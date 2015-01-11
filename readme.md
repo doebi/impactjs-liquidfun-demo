@@ -1,3 +1,5 @@
 # ImpactJS Liquidfun Demo
 
-Based on the Boy2D Demo this demo shows the usage of Liquidfuns abilities to handle Particle Simulations.
+Based on the Box2D Demo this demo shows the usage of Liquidfuns abilities to handle Particle Simulations.
+
+Live Demo: http://game-dev.apps.doebian.at/

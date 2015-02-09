@@ -20,12 +20,85 @@
 			bottom: 0;
 			margin: auto;
 		}
+
+        #config {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 400px;
+            background-color: #000;
+            z-index: 1000;
+            padding: 20px;
+        }
 	</style>
+
+    <link rel="stylesheet" href="lib/utils/jquery-ui.min.css" title="" type="" />
 
 	<script type="text/javascript" src="lib/impact/impact.js"></script>
 	<script type="text/javascript" src="lib/game/main.js"></script>
+	<script type="text/javascript" src="lib/utils/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="lib/utils/jquery-ui.min.js"></script>
 </head>
 <body>
 	<canvas id="canvas"></canvas>
+    <div id="config">
+        <p><b>damping</b>
+           <span id="damping-value">1</span></p>
+        <div id="damping-slider"></div>
+            
+        <p><b>density</b>
+           <span id="density-value">1</span></p>
+        <div id="density-slider"></div>
+            
+        <p><b>radius</b>
+           <span id="radius-value">3</span></p>
+        <div id="radius-slider"></div>
+
+        <p><b>gravityScale</b>
+           <span id="gravityScale-value">1</span></p>
+        <div id="gravityScale-slider"></div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        $('#damping-slider').slider({
+            min: 0,
+            max: 1,
+            value: 1,
+            step: 0.05,
+            slide: function(event, ui){
+                $('#damping-value').html(ui.value);
+                ig.particleSystem.SetDamping(ui.value);
+            }
+        });
+        $('#density-slider').slider({
+            min: 0.1,
+            max: 10,
+            value: 1,
+            step: 0.05,
+            slide: function(event, ui){
+                $('#density-value').html(ui.value);
+                ig.particleSystem.SetDensity(ui.value);
+            }
+        });
+        $('#radius-slider').slider({
+            min: 0.1,
+            max: 10,
+            value: 3,
+            step: 0.1,
+            slide: function(event, ui){
+                $('#radius-value').html(ui.value);
+                ig.particleSystem.SetRadius(ui.value * Box2D.SCALE);
+            }
+        });
+        $('#gravityScale-slider').slider({
+            min: -5,
+            max: 5,
+            value: 1,
+            step: 0.5,
+            slide: function(event, ui){
+                $('#gravityScale-value').html(ui.value);
+                ig.particleSystem.SetGravityScale(ui.value);
+            }
+        });
+    </script>
 </body>
 </html>
